@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  .calculator {
+    width: 300px;
+    margin: 100px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .display {
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+  .button.tochka {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .button.one{
+    grid-row: 4;
+    grid-column: 1;
+  }
+  .button.two{
+    grid-row: 4;
+    grid-column: 2;
+  }
+  .button.three{
+    grid-row: 4;
+    grid-column: 3;
+  }
+  .button.four{
+    grid-row:3;
+    grid-column: 1;
+  }
+  .button.five{
+    grid-row:3;
+    grid-column: 2;
+  }
+  .button.six{
+    grid-row:3;
+    grid-column: 3;
+  }
+  .button.seven{
+    grid-row:2;
+    grid-column: 1;
+  }
+  .button.eight{
+    grid-row:2;
+    grid-column: 2;
+  }
+  .button.nine{
+    grid-row:2;
+    grid-column: 3;
+  }
+  .button.delision{
+    grid-row:1;
+    grid-column: 4;
+  }
+  .button.moolt{
+    grid-row:2;
+    grid-column: 4;
+  }
+  .button.plus{
+    grid-row:3;
+    grid-column: 4;
+  }
+  .button.minus{
+    grid-row:4;
+    grid-column: 4;
+  }
+  .button.plusminus{
+    grid-row:1;
+    grid-column:3;
+  }
+  .button {
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .button:hover {
+    background-color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="display" id="display">0</div>
+  <div class="buttons">
+    <button class="button c" onclick="clearDisplay()">C</button>
+    <button class="button plusminus" onclick="changeSign()">+/-</button>
+    <button class="button delision" onclick="appendToDisplay('/')">÷</button>
+    <button class="button moolt" onclick="appendToDisplay('*')">x</button>
+    
+    <button class="button tochka" onclick="appendToDisplay('.')">.</button>
+    <button class="button seven" onclick="appendToDisplay('7')">7</button>
+    <button class="button eight" onclick="appendToDisplay('8')">8</button>
+    <button class="button nine" onclick="appendToDisplay('9')">9</button>
+    <button class="button four" onclick="appendToDisplay('4')">4</button>
+    <button class="button plus " onclick="appendToDisplay('+')">+</button>
+    
+    <button class="button five " onclick="appendToDisplay('5')">5</button>
+    <button class="button six " onclick="appendToDisplay('6')">6</button>
+    
+    
+    <button class="button minus" onclick="appendToDisplay('-')">-</button>
+    <button class="button one" onclick="appendToDisplay('1')">1</button>
+    <button class="button two" onclick="appendToDisplay('2')">2</button>
+    <button class="button three" onclick="appendToDisplay('3')">3</button>
+
+    
+    <button class="button zero" onclick="appendToDisplay('0')">0</button>
+    <button class="button ravno" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  function clearDisplay() {
+    document.getElementById('display').innerText = '0';
+  }
+
+  function appendToDisplay(value) {
+    const display = document.getElementById('display');
+    if (display.innerText === '0' && value !== '.') {
+      display.innerText = value;
+    } else {
+      display.innerText += value;
+    }
+  }
+
+  function calculate() {
+    const display = document.getElementById('display');
+    let result = eval(display.innerText);
+    display.innerText = result;
+  }
+
+  function changeSign() {
+    const display = document.getElementById('display');
+    if (display.innerText !== '0') {
+      display.innerText = display.innerText.startsWith('-')
+        ? display.innerText.slice(1)
+        : '-' + display.innerText;
+    }
+  }
+</script>
+
+</body>
+</html>
